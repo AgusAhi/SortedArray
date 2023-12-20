@@ -1,9 +1,6 @@
-
 import java.io.*;
-
 public class SortedTextFile {
     private String fileName;
-
 
     public SortedTextFile(String text) throws IOException {
         this.fileName = fileName;
@@ -13,12 +10,27 @@ public class SortedTextFile {
         return fileName;
     }
 
-    public void put() throws IOException { // that will store the string into the file but in such a way that the file is sorted in ascending order.
+    public void put(String newline) throws IOException { // that will store the string into the file but in such a way that the file is sorted in ascending order.
         File file = new File(fileName);
-        PrintWriter out = new PrintWriter(new FileWriter(file));
+        File temporaryFile = new File("temp");
+        new PrintWriter(new FileWriter(file));
+        BufferedReader input = null;
+        PrintWriter output = null;
+        String line;
 
         try {
-            String line
+            if (file.exists()) {
+                while ((line = input.readLine()) != null) {
+                    output.write(newline);
+                }
+
+            }
+            output.println(line);
+
+        } finally {
+            if (input != null){
+                input.close();
+            }
 
 
         }

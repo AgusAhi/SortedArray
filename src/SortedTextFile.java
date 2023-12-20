@@ -18,7 +18,7 @@ public class SortedTextFile {
         PrintWriter out = new PrintWriter(new FileWriter(file));
 
         try {
-            String line;
+            String line
 
 
         }

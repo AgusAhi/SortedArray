@@ -54,6 +54,6 @@ public class SortedArray {
             array[i] = array[i + 1];
         }
         numElements--;
-
+ 
     }
 }

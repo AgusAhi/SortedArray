@@ -169,16 +169,32 @@ public class SortedTextFile {
         sortedTextFile.print();
     }
 
-    public static void merge(String name1, String name2, String outputFilename) throws IOException {
+    public static void merge(String name1, String name2, String outputFilename) throws IOException { // Merges 2 sorted files
         BufferedReader input1 = null;
         BufferedReader input2 = null;
-        BufferedReader output = null;
+        PrintWriter output = null;
         try {
+            // Instanciamos
+            input1 = new BufferedReader(new FileReader(name1));
+            input2 = new BufferedReader(new FileReader(name2));
+            output = new PrintWriter(new FileWriter(outputFilename));
+
             String line1 = input1.readLine();
             String line2 = input2.readLine();
+
             while (line1 != null || line2 != null) {
+                if (line1 == null) {
+                    line2 = printAndRead(output, input2, line2);
+                } else if (line2 == null) {
+                    line1 = printAndRead(output, input1, line1);
+                } else if (line1.compareToIgnoreCase(line2) < 0) {
+                    line1 = printAndRead(output, input1, line1);
+                } else {
+                    line2 = printAndRead(output, input2, line2);
+                }
 
             }
+
         } finally {
             if (input1 != null) {
                 input1.close();
@@ -189,9 +205,12 @@ public class SortedTextFile {
             if (output != null) {
                 output.close();
             }
-
         }
+    }
 
+    public static String printAndRead(PrintWriter out, BufferedReader in, String line) throws IOException {
+        out.println(line);
+        return in.readLine();
     }
 
 

@@ -16,5 +16,8 @@ public class Main2 {
         System.out.println("---print---");
         SortedTextFile.printStatic("text.txt");
 
+        System.out.println("---merge---");
+        SortedTextFile.merge("text.txt", );
+
     }
 }
